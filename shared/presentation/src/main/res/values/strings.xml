@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_new">Novo</string>
+    <string name="label_free_shipping">Frete grátis</string>
+    <string name="label_reviews">(%1$s avaliações)</string>
+</resources>
