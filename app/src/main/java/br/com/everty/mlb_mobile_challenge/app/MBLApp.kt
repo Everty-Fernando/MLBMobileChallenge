@@ -8,7 +8,7 @@ class MBLApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        
+
         startKoin {
             androidContext(this@MBLApp)
         }
