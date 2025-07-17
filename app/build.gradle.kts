@@ -40,7 +40,13 @@ android {
 }
 
 dependencies {
+    implementation(project(SharedModules.presentation))
+    implementation(project(SharedModules.network))
+    implementation(project(FeatureModules.product))
 
+    implementation(libs.koin.android)
+
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

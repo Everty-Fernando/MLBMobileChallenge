@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "MLB Mobile Challenge"
 include(":app")
- 
+include(":shared:presentation")
+include(":shared:network")
+include(":shared:utils")
