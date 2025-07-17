@@ -24,3 +24,5 @@ include(":app")
 include(":shared:presentation")
 include(":shared:network")
 include(":shared:utils")
+
+include(":features:product")
