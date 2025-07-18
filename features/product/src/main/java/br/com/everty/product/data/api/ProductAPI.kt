@@ -18,4 +18,11 @@ interface ProductAPI {
     suspend fun getProductById(
         @Path("productId") productId: String
     ): Response<ProductResponse>
+
+    @GET("products/search")
+    suspend fun searchProducts(
+        @Query("status") status: String = "active", //Fixo para teste
+        @Query("site_id") siteId: String = "MLB", //Fixo para teste
+        @Query("q") query: String
+    ): Response<ProductModelResponse>
 }
