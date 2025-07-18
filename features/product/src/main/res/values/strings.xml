@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="product_search_title_highlights">DESTAQUES</string>
+    <string name="product_search_title_header">Pesquise por qualquer produto no MercadoBuscar</string>
+    <string name="product_search_placeholder">Buscar produto...</string>
+</resources>
