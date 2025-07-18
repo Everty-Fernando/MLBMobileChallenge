@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.everty.shared.presentation.design_system.dimens.AppDimens
 import br.com.everty.shared.presentation.design_system.responsive.Dimension
 import br.com.everty.shared.presentation.design_system.responsive.responsiveDp
 import br.com.everty.shared.presentation.design_system.spacing.AppSpacing
@@ -44,8 +45,8 @@ fun ProductCard(
             .aspectRatio(0.55f),
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        border = BorderStroke(1.dp, AppTheme.colors.divider)
+        elevation = CardDefaults.cardElevation(defaultElevation = AppDimens.micro),
+        border = BorderStroke(AppDimens.tiny, AppTheme.colors.divider)
     ) {
         Column(modifier = Modifier.padding(AppSpacing.base)) {
             AsyncImage(

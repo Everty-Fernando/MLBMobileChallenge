@@ -29,14 +29,13 @@ fun AppSearchTopBar(
     onQueryChange: (String) -> Unit,
     onBackClick: () -> Unit,
     onSearchClick: () -> Unit,
-    onFilterClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .background(AppTheme.colors.highlight)
-            .padding(AppSpacing.regular),
+            .padding(vertical = AppSpacing.base, horizontal = AppSpacing.regular),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -70,7 +69,6 @@ private fun SearchTopBarPreview() {
             query = query,
             onQueryChange = { query = it },
             onBackClick = {},
-            onFilterClick = {},
             onSearchClick = {}
         )
     }

@@ -23,7 +23,7 @@ import br.com.everty.shared.presentation.design_system.theme.AppTheme
 
 @Composable
 fun AppRatingInfo(
-    rating: Double,
+    rating: Float,
     totalReviews: Int,
     modifier: Modifier = Modifier
 ) {
@@ -60,7 +60,7 @@ fun AppRatingInfo(
 private fun AppRatingInfoPreview() {
     AppTheme {
         AppRatingInfo(
-            rating = 4.8,
+            rating = 4.8f,
             totalReviews = 1247,
             modifier = Modifier.padding(AppSpacing.regular)
         )

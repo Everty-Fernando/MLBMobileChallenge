@@ -41,10 +41,8 @@ import br.com.everty.shared.presentation.design_system.dimens.AppDimens
 fun ProductHorizontalCard(
     modifier: Modifier = Modifier,
     imageUrl: String,
-    isNew: Boolean = false,
-    isFavorite: Boolean = false,
     title: String,
-    rating: Double,
+    rating: Float,
     reviewCount: Int,
     priceOriginal: String? = null,
     pricePromotional: String,
@@ -58,7 +56,7 @@ fun ProductHorizontalCard(
                 shape = MaterialTheme.shapes.medium
             )
             .border(
-                width = 1.dp,
+                width = AppDimens.tiny,
                 color = AppTheme.colors.divider,
                 shape = MaterialTheme.shapes.medium
             )
@@ -78,28 +76,6 @@ fun ProductHorizontalCard(
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(bottom = AppSpacing.micro),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                if (isNew) {
-                    AppBadgeLabel(text = stringResource(R.string.label_new))
-                    Spacer(modifier = Modifier.width(AppSpacing.small))
-                }
-
-                if (isFavorite) {
-                    Icon(
-                        imageVector = Icons.Default.FavoriteBorder,
-                        contentDescription = "Favorito",
-                        tint = AppTheme.colors.secondaryText,
-                        modifier = Modifier.size(AppDimens.medium)
-                    )
-                }
-            }
-
             Text(
                 text = title,
                 style = MaterialTheme.typography.bodyMedium.copy(
@@ -156,10 +132,8 @@ fun ProductHorizontalCardPreview() {
     AppTheme {
         ProductHorizontalCard(
             imageUrl = "https://images.unsplash.com/photo-1677086636713-b2f4e6fd0e4e",
-            isNew = true,
-            isFavorite = true,
             title = "iPhone 14 Pro Max 128GB - Deep Purple",
-            rating = 4.8,
+            rating = 4.8f,
             reviewCount = 1247,
             priceOriginal = "R$ 4.799,99",
             pricePromotional = "R$ 4.299,99",

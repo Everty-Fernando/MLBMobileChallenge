@@ -8,6 +8,18 @@
         android:id="@+id/productSearchFragment"
         android:name="br.com.everty.product.presentation.product_search.ProductSearchFragment"
         android:label="ProductSearchFragment">
+        <action
+            android:id="@+id/action_productSearchFragment_to_productListResultsFragment"
+            app:destination="@id/productListResultsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productListResultsFragment"
+        android:name="br.com.everty.product.presentation.product_list_result.ProductSearchResultsFragment"
+        android:label="productListResultsFragment">
+        <argument
+            android:name="query"
+            app:argType="string" />
     </fragment>
 
 </navigation>
