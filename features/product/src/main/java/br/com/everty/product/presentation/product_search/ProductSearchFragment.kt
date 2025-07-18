@@ -5,13 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import br.com.everty.product.presentation.product_search.events.ProductSearchEvents
-import br.com.everty.product.presentation.product_search.preview.productUIStatePreview
 import br.com.everty.product.presentation.product_search.screen.ProductSearchScreen
+import br.com.everty.product.presentation.product_search.viewmodel.ProductViewModel
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
 import br.com.everty.shared.presentation.utils.BaseFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductSearchFragment : BaseFragment() {
+
+    private val viewModel: ProductViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +26,7 @@ class ProductSearchFragment : BaseFragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 AppTheme {
-                    ProductSearchScreen(state = productUIStatePreview , events = searchEvents)
+                    ProductSearchScreen(state = viewModel.uiState, events = searchEvents)
                 }
             }
         }
@@ -29,16 +34,18 @@ class ProductSearchFragment : BaseFragment() {
 
     private val searchEvents = object : ProductSearchEvents {
         override fun onValueChangeSearch(value: String) {
+            viewModel.updateSearchQuery(value)
         }
 
         override fun onSearchClick(query: String) {
-
+            viewModel.clearSearchQuery()
         }
     }
 
     override fun setupNavigation(view: View) = Unit
 
     override fun setupViews() {
+        viewModel.loadProductList()
     }
 
     override fun setupObservers() = Unit
