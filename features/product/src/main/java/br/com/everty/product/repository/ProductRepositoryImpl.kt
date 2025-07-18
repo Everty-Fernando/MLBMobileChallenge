@@ -11,7 +11,7 @@ class ProductRepositoryImpl(
     private val service: ProductAPI
 ) : ProductRepository {
 
-    //Todo(refactor pending)
+    //Todo(pending refactor)
     override fun getHighlightedProducts(): Flow<Result<List<ProductResponse>>> = flow {
         when (val highlightsResult = safeApiCall { service.getProductsHighlightsList() }) {
 
@@ -40,6 +40,22 @@ class ProductRepositoryImpl(
                     code = highlightsResult.code,
                     showRetry = highlightsResult.showRetry,
                     exception = highlightsResult.exception
+                ))
+            }
+        }
+    }
+
+    override fun searchProducts(query: String): Flow<Result<List<ProductResponse>>> = flow {
+        when (val result = safeApiCall { service.searchProducts(query = query) }) {
+            is Result.Success -> {
+                emit(Result.Success(result.data.productsResult))
+            }
+            is Result.Error -> {
+                emit(Result.Error(
+                    message = result.message,
+                    code = result.code,
+                    showRetry = result.showRetry,
+                    exception = result.exception
                 ))
             }
         }
