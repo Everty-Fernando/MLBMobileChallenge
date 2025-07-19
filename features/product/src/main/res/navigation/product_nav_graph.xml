@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_productSearchFragment_to_productListResultsFragment"
             app:destination="@id/productListResultsFragment" />
+        <action
+            android:id="@+id/action_productSearchFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
 
     <fragment
@@ -19,6 +22,18 @@
         android:label="productListResultsFragment">
         <argument
             android:name="query"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productListResultsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="br.com.everty.product.presentation.product_details.ProductDetailsFragment"
+        android:label="ProductDetailsFragment">
+        <argument
+            android:name="productId"
             app:argType="string" />
     </fragment>
 

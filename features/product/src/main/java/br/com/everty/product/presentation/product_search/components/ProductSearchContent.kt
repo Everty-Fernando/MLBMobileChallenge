@@ -26,6 +26,7 @@ import br.com.everty.shared.presentation.design_system.theme.AppTheme
 @Composable
 fun ProductSearchContent(
     products: List<ProductModelUI>,
+    onProductClick: (String) -> Unit
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -51,7 +52,8 @@ fun ProductSearchContent(
                 imageUrl = product.imageUrl,
                 title = product.title,
                 currentPrice = product.currentPrice,
-                originalPrice = product.originalPrice
+                originalPrice = product.originalPrice,
+                onProductClick = { onProductClick(product.id) }
             )
         }
     }
@@ -62,7 +64,8 @@ fun ProductSearchContent(
 private fun ProductSearchContentPreview() {
     AppTheme {
         ProductSearchContent(
-            products = productsHighlightsPreview
+            products = productsHighlightsPreview,
+            onProductClick = {}
         )
     }
 }

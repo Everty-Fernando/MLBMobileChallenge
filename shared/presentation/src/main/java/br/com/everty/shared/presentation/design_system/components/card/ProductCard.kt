@@ -1,6 +1,7 @@
 package br.com.everty.shared.presentation.design_system.components.card
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -34,7 +35,8 @@ fun ProductCard(
     imageUrl: String,
     title: String,
     currentPrice: String,
-    originalPrice: String? = null
+    originalPrice: String? = null,
+    onProductClick: () -> Unit
 ) {
     val cardWidth = responsiveDp(0.45f, Dimension.Width)
     val imageHeight = responsiveDp(0.20f, Dimension.Height)
@@ -42,7 +44,8 @@ fun ProductCard(
     Card(
         modifier = modifier
             .width(cardWidth)
-            .aspectRatio(0.55f),
+            .aspectRatio(0.55f)
+            .clickable { onProductClick() },
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(defaultElevation = AppDimens.micro),
@@ -102,7 +105,8 @@ private fun ProductCardPreview() {
             imageUrl = "https://cdn.awsli.com.br/600x700/1635/1635145/produto/197542173/iphone14promax_3-bdsi23cmtw.png",
             title = "iPhone 14 Pro Max 128GB - Deep Purple",
             currentPrice = "R$ 4.299,99",
-            originalPrice = "R$ 4.799,99"
+            originalPrice = "R$ 4.799,99",
+            onProductClick = {}
         )
     }
 }

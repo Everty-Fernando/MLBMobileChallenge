@@ -2,6 +2,7 @@ package br.com.everty.shared.presentation.design_system.components.card
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -47,6 +48,7 @@ fun ProductHorizontalCard(
     priceOriginal: String? = null,
     pricePromotional: String,
     hasFreeShipping: Boolean = false,
+    onProductClick: () -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -61,6 +63,7 @@ fun ProductHorizontalCard(
                 shape = MaterialTheme.shapes.medium
             )
             .padding(AppSpacing.base)
+            .clickable { onProductClick() }
     ) {
         AsyncImage(
             model = imageUrl,
@@ -138,6 +141,7 @@ fun ProductHorizontalCardPreview() {
             priceOriginal = "R$ 4.799,99",
             pricePromotional = "R$ 4.299,99",
             hasFreeShipping = true,
+            onProductClick = {}
         )
     }
 }

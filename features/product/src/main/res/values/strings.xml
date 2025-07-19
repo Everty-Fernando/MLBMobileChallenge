@@ -4,4 +4,9 @@
     <string name="product_search_title_header">Pesquise por qualquer produto no MercadoBuscar</string>
     <string name="product_search_placeholder">Buscar produto...</string>
     <string name="product_search_results_label">%1$s resultados para \"%2$s\"</string>
+    <string name="product_details_free_shipping">Frete grátis</string>
+    <string name="product_details_description">Descrição</string>
+    <string name="product_details_btn_add_cart">Adicionar ao carrinho</string>
+    <string name="product_details_btn_buy">Comprar</string>
+    <string name="product_details_features">Características principais</string>
 </resources>

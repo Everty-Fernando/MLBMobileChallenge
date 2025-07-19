@@ -29,6 +29,7 @@ fun ProductSearchScreen(
             state = state,
             onValueChangeSearch = events::onValueChangeSearch,
             onSearchClick = events::onSearchClick,
+            onProductDetailsClick = events::onProductDetailsClick,
         )
     }
 }
@@ -37,7 +38,8 @@ fun ProductSearchScreen(
 fun ProductSearchScreenContent(
     state: ProductUIState,
     onValueChangeSearch: (String) -> Unit,
-    onSearchClick: (String) -> Unit
+    onSearchClick: (String) -> Unit,
+    onProductDetailsClick: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -54,7 +56,8 @@ fun ProductSearchScreenContent(
             ProductListLoadingContent()
         } else {
             ProductSearchContent(
-                products = state.productList
+                products = state.productList,
+                onProductClick = onProductDetailsClick
             )
         }
     }
@@ -67,7 +70,8 @@ private fun ProductSearchScreenContent_Giro_Preview() {
         ProductSearchScreenContent(
             state = productUIStatePreview,
             onValueChangeSearch = {},
-            onSearchClick = {}
+            onSearchClick = {},
+            onProductDetailsClick = {}
         )
     }
 }

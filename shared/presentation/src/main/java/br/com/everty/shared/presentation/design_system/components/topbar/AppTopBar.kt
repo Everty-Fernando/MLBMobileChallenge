@@ -30,7 +30,7 @@ fun AppTopBar(
         modifier = modifier
             .fillMaxWidth()
             .background(AppTheme.colors.background)
-            .padding(horizontal = AppSpacing.base, vertical = AppSpacing.small),
+            .padding(horizontal = AppSpacing.mini, vertical = AppSpacing.small),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

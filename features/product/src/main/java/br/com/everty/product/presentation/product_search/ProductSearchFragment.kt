@@ -41,10 +41,19 @@ class ProductSearchFragment : BaseFragment() {
             viewModel.clearSearchQuery()
             navigateToProductSearch(query)
         }
+
+        override fun onProductDetailsClick(productId: String) {
+            navigateToProductDetails(productId)
+        }
     }
 
     private fun navigateToProductSearch(query: String) {
         val action = ProductSearchFragmentDirections.actionProductSearchFragmentToProductListResultsFragment(query)
+        findNavController().navigate(action)
+    }
+
+    private fun navigateToProductDetails(productId: String) {
+        val action = ProductSearchFragmentDirections.actionProductSearchFragmentToProductDetailsFragment(productId)
         findNavController().navigate(action)
     }
 

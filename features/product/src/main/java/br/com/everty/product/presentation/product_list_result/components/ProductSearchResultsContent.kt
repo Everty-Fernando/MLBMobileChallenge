@@ -27,7 +27,8 @@ import br.com.everty.shared.presentation.design_system.theme.AppTheme
 @Composable
 fun ProductSearchResultsContent(
     query: String,
-    productList: List<ProductModelUI>
+    productList: List<ProductModelUI>,
+    onProductClick: (String) -> Unit
 ) {
 
     LazyColumn(
@@ -57,6 +58,7 @@ fun ProductSearchResultsContent(
                 priceOriginal = product.originalPrice,
                 pricePromotional = product.currentPrice,
                 hasFreeShipping = product.hasFreeShipping,
+                onProductClick = { onProductClick(product.id) }
             )
         }
     }
@@ -68,7 +70,8 @@ fun ProductSearchResultsContentPreview() {
     AppTheme {
         ProductSearchResultsContent(
             query = "teste",
-            productList = productsPreview
+            productList = productsPreview,
+            onProductClick = {}
         )
     }
 }

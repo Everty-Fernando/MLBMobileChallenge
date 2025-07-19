@@ -29,7 +29,8 @@ fun ProductSearchResultsScreen(
             state = state,
             onValueChangeSearch = events::onValueChangeSearch,
             onBackClick = events::onBackClick,
-            onSearchClick = events::onSearchClick
+            onSearchClick = events::onSearchClick,
+            onProductDetailsClick = events::onProductDetailsClick
         )
     }
 }
@@ -39,6 +40,7 @@ fun ProductSearchResultsScreenContent(
     state: ProductUIState,
     onValueChangeSearch: (String) -> Unit,
     onSearchClick: (String) -> Unit,
+    onProductDetailsClick: (String) -> Unit,
     onBackClick: () -> Unit
 ) {
     Column(
@@ -58,7 +60,8 @@ fun ProductSearchResultsScreenContent(
         } else {
             ProductSearchResultsContent(
                 query = state.inputQuery,
-                productList = state.productList
+                productList = state.productList,
+                onProductClick = onProductDetailsClick
             )
         }
     }
@@ -72,7 +75,8 @@ private fun ProductSearchResultScreenPreview() {
             state = productUIStatePreview,
             onValueChangeSearch = {},
             onSearchClick = {},
-            onBackClick = {}
+            onBackClick = {},
+            onProductDetailsClick = {}
         )
     }
 }
