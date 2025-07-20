@@ -14,6 +14,7 @@ android {
         consumerProguardFiles "consumer-rules.pro"
 
         buildConfigField("String", "ACCESS_TOKEN", "\"seu_token_aqui\"")
+        buildConfigField("String", "BASE_DEV", "\"https://api.mercadolibre.com/\"")
     }
 
     buildFeatures {
