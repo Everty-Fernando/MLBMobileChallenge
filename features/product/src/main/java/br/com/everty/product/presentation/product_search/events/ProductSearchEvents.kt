@@ -4,4 +4,5 @@ interface ProductSearchEvents {
     fun onValueChangeSearch(value: String)
     fun onSearchClick(query: String)
     fun onProductDetailsClick(productId: String)
+    fun onRetry()
 }

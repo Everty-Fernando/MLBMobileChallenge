@@ -14,7 +14,13 @@ import br.com.everty.product.presentation.product_search.preview.productUIStateP
 import br.com.everty.product.presentation.product_search.state.ProductUIState
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.res.stringResource
+import br.com.everty.product.R
+import br.com.everty.product.presentation.product_search.components.ProductListLoadingContent
+import br.com.everty.product.presentation.product_search.components.ProductSearchContent
 import br.com.everty.shared.presentation.design_system.components.AppScaffold
+import br.com.everty.shared.presentation.design_system.components.feedback.AppEmptyState
+import br.com.everty.shared.presentation.design_system.components.feedback.AppErrorState
 
 @Composable
 fun ProductSearchResultsScreen(
@@ -30,7 +36,8 @@ fun ProductSearchResultsScreen(
             onValueChangeSearch = events::onValueChangeSearch,
             onBackClick = events::onBackClick,
             onSearchClick = events::onSearchClick,
-            onProductDetailsClick = events::onProductDetailsClick
+            onProductDetailsClick = events::onProductDetailsClick,
+            onRetry = events::onRetry
         )
     }
 }
@@ -41,7 +48,8 @@ fun ProductSearchResultsScreenContent(
     onValueChangeSearch: (String) -> Unit,
     onSearchClick: (String) -> Unit,
     onProductDetailsClick: (String) -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onRetry: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -54,15 +62,37 @@ fun ProductSearchResultsScreenContent(
             onBackClick = onBackClick,
             onSearchClick = { onSearchClick(state.inputQuery) }
         )
+        when {
+            state.isLoading -> {
+                ProductSearchResultsLoading()
+            }
 
-        if (state.isLoading) {
-            ProductSearchResultsLoading()
-        } else {
-            ProductSearchResultsContent(
-                query = state.inputQuery,
-                productList = state.productList,
-                onProductClick = onProductDetailsClick
-            )
+            state.errorMessage.isNotEmpty() -> {
+                AppErrorState(
+                    code = state.errorCode,
+                    message = state.errorMessage,
+                    showRetry = state.showRetry,
+                    onRetry = onRetry
+                )
+            }
+
+            state.productList.isEmpty() -> {
+                AppEmptyState(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f),
+                    message = stringResource(R.string.product_empty_state),
+                    lottieAsset = "empty_state.json",
+                )
+            }
+
+            else -> {
+                ProductSearchResultsContent(
+                    query = state.inputQuery,
+                    productList = state.productList,
+                    onProductClick = onProductDetailsClick
+                )
+            }
         }
     }
 }
@@ -76,7 +106,8 @@ private fun ProductSearchResultScreenPreview() {
             onValueChangeSearch = {},
             onSearchClick = {},
             onBackClick = {},
-            onProductDetailsClick = {}
+            onProductDetailsClick = {},
+            onRetry = {}
         )
     }
 }

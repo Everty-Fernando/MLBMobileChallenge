@@ -5,7 +5,8 @@ import br.com.everty.product.domain.model.ProductModelUI
 data class ProductUIState(
     val productList: List<ProductModelUI> = emptyList(),
     val isLoading: Boolean = false,
-    val errorMessage: String? = null,
+    val errorMessage: String= "",
+    val errorCode: String = "",
     val showRetry: Boolean = false,
     val inputQuery: String = ""
 )

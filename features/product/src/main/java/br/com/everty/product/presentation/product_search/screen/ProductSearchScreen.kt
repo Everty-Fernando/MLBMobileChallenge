@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import br.com.everty.product.R
 import br.com.everty.product.presentation.product_search.components.ProductListLoadingContent
 import br.com.everty.product.presentation.product_search.components.ProductSearchContent
 import br.com.everty.product.presentation.product_search.components.ProductSearchHeader
@@ -14,6 +16,8 @@ import br.com.everty.product.presentation.product_search.events.ProductSearchEve
 import br.com.everty.product.presentation.product_search.preview.productUIStatePreview
 import br.com.everty.product.presentation.product_search.state.ProductUIState
 import br.com.everty.shared.presentation.design_system.components.AppScaffold
+import br.com.everty.shared.presentation.design_system.components.feedback.AppEmptyState
+import br.com.everty.shared.presentation.design_system.components.feedback.AppErrorState
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
 
 @Composable
@@ -30,6 +34,7 @@ fun ProductSearchScreen(
             onValueChangeSearch = events::onValueChangeSearch,
             onSearchClick = events::onSearchClick,
             onProductDetailsClick = events::onProductDetailsClick,
+            onRetry = events::onRetry,
         )
     }
 }
@@ -40,6 +45,7 @@ fun ProductSearchScreenContent(
     onValueChangeSearch: (String) -> Unit,
     onSearchClick: (String) -> Unit,
     onProductDetailsClick: (String) -> Unit,
+    onRetry: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -52,13 +58,33 @@ fun ProductSearchScreenContent(
             onSearchClick = { onSearchClick(state.inputQuery) }
         )
 
-        if (state.isLoading) {
-            ProductListLoadingContent()
-        } else {
-            ProductSearchContent(
-                products = state.productList,
-                onProductClick = onProductDetailsClick
-            )
+        when {
+            state.isLoading -> {
+                ProductListLoadingContent()
+            }
+            state.errorMessage.isNotEmpty() -> {
+                AppErrorState(
+                    code = state.errorCode,
+                    message = state.errorMessage,
+                    showRetry = state.showRetry,
+                    onRetry = onRetry
+                )
+            }
+            state.productList.isEmpty() -> {
+                AppEmptyState(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f),
+                    message = stringResource(R.string.product_empty_state),
+                    lottieAsset = "empty_state.json",
+                )
+            }
+            else -> {
+                ProductSearchContent(
+                    products = state.productList,
+                    onProductClick = onProductDetailsClick
+                )
+            }
         }
     }
 }
@@ -71,7 +97,8 @@ private fun ProductSearchScreenContent_Giro_Preview() {
             state = productUIStatePreview,
             onValueChangeSearch = {},
             onSearchClick = {},
-            onProductDetailsClick = {}
+            onProductDetailsClick = {},
+            onRetry = {}
         )
     }
 }

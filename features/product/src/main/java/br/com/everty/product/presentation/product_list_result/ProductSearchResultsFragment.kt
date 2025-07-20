@@ -50,6 +50,11 @@ class ProductSearchResultsFragment : BaseFragment() {
         override fun onProductDetailsClick(productId: String) {
             navigateToProductDetails(productId)
         }
+
+        override fun onRetry() {
+            val query = viewModel.uiState.inputQuery
+            viewModel.searchProducts(query)
+        }
     }
 
     private fun navigateToProductDetails(productId: String) {
