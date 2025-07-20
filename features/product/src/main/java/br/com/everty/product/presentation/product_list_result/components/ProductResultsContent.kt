@@ -7,12 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import br.com.everty.product.domain.model.ProductModelUI
 import br.com.everty.shared.presentation.design_system.components.card.ProductHorizontalCard
 import androidx.compose.foundation.lazy.items
@@ -25,7 +23,7 @@ import br.com.everty.shared.presentation.design_system.spacing.AppSpacing
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
 
 @Composable
-fun ProductSearchResultsContent(
+fun ProductResultsContent(
     query: String,
     productList: List<ProductModelUI>,
     onProductClick: (String) -> Unit
@@ -66,9 +64,9 @@ fun ProductSearchResultsContent(
 
 @Preview
 @Composable
-fun ProductSearchResultsContentPreview() {
+fun ProductResultsContentPreview() {
     AppTheme {
-        ProductSearchResultsContent(
+        ProductResultsContent(
             query = "teste",
             productList = productsPreview,
             onProductClick = {}

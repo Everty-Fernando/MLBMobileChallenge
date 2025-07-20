@@ -1,6 +1,7 @@
 package br.com.everty.product.presentation.product_list_result.preview
 
 import br.com.everty.product.domain.model.ProductModelUI
+import br.com.everty.product.presentation.product_list_result.state.ProductResultsUIState
 
 val productsPreview = listOf(
     ProductModelUI(
@@ -24,4 +25,8 @@ val productsPreview = listOf(
         hasFreeShipping = false,
         isFavorite = true
     )
+)
+
+val productResultsUIStatePreview = ProductResultsUIState(
+    productList = productsPreview
 )

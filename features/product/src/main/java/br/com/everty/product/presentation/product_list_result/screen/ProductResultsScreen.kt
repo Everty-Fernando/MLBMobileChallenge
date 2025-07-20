@@ -3,35 +3,33 @@ package br.com.everty.product.presentation.product_list_result.screen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import br.com.everty.product.presentation.product_list_result.components.ProductSearchResultsContent
-import br.com.everty.product.presentation.product_list_result.components.ProductSearchResultsHeader
-import br.com.everty.product.presentation.product_list_result.components.ProductSearchResultsLoading
-import br.com.everty.product.presentation.product_list_result.events.ProductResultEvents
-import br.com.everty.product.presentation.product_search.preview.productUIStatePreview
-import br.com.everty.product.presentation.product_search.state.ProductUIState
-import br.com.everty.shared.presentation.design_system.theme.AppTheme
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import br.com.everty.product.R
-import br.com.everty.product.presentation.product_search.components.ProductListLoadingContent
-import br.com.everty.product.presentation.product_search.components.ProductSearchContent
+import br.com.everty.product.presentation.product_list_result.components.ProductResultsContent
+import br.com.everty.product.presentation.product_list_result.components.ProductResultsHeader
+import br.com.everty.product.presentation.product_list_result.components.ProductResultsLoading
+import br.com.everty.product.presentation.product_list_result.events.ProductResultEvents
+import br.com.everty.product.presentation.product_list_result.preview.productResultsUIStatePreview
+import br.com.everty.product.presentation.product_list_result.state.ProductResultsUIState
 import br.com.everty.shared.presentation.design_system.components.AppScaffold
 import br.com.everty.shared.presentation.design_system.components.feedback.AppEmptyState
 import br.com.everty.shared.presentation.design_system.components.feedback.AppErrorState
+import br.com.everty.shared.presentation.design_system.theme.AppTheme
 
 @Composable
-fun ProductSearchResultsScreen(
-    state: ProductUIState,
+fun ProductResultsScreen(
+    state: ProductResultsUIState,
     events: ProductResultEvents,
 ) {
     AppScaffold(
         modifier = Modifier.fillMaxSize(),
         containerColor = MaterialTheme.colorScheme.background,
     ) {
-        ProductSearchResultsScreenContent(
+        ProductResultsScreenContent(
             state = state,
             onValueChangeSearch = events::onValueChangeSearch,
             onBackClick = events::onBackClick,
@@ -43,8 +41,8 @@ fun ProductSearchResultsScreen(
 }
 
 @Composable
-fun ProductSearchResultsScreenContent(
-    state: ProductUIState,
+fun ProductResultsScreenContent(
+    state: ProductResultsUIState,
     onValueChangeSearch: (String) -> Unit,
     onSearchClick: (String) -> Unit,
     onProductDetailsClick: (String) -> Unit,
@@ -56,7 +54,7 @@ fun ProductSearchResultsScreenContent(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        ProductSearchResultsHeader(
+        ProductResultsHeader(
             query = state.inputQuery,
             onQueryChange = onValueChangeSearch,
             onBackClick = onBackClick,
@@ -64,7 +62,7 @@ fun ProductSearchResultsScreenContent(
         )
         when {
             state.isLoading -> {
-                ProductSearchResultsLoading()
+                ProductResultsLoading()
             }
 
             state.errorMessage.isNotEmpty() -> {
@@ -87,8 +85,8 @@ fun ProductSearchResultsScreenContent(
             }
 
             else -> {
-                ProductSearchResultsContent(
-                    query = state.inputQuery,
+                ProductResultsContent(
+                    query = state.searchedText,
                     productList = state.productList,
                     onProductClick = onProductDetailsClick
                 )
@@ -99,10 +97,10 @@ fun ProductSearchResultsScreenContent(
 
 @Preview
 @Composable
-private fun ProductSearchResultScreenPreview() {
+private fun ProductResultScreenPreview() {
     AppTheme {
-        ProductSearchResultsScreenContent(
-            state = productUIStatePreview,
+        ProductResultsScreenContent(
+            state = productResultsUIStatePreview,
             onValueChangeSearch = {},
             onSearchClick = {},
             onBackClick = {},

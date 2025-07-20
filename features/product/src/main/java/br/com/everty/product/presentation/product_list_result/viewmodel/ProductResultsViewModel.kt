@@ -7,28 +7,31 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.everty.product.domain.model.ProductModelUI
 import br.com.everty.product.domain.usecase.GetProductSearchListUIUseCase
-import br.com.everty.product.presentation.product_search.state.ProductUIState
+import br.com.everty.product.presentation.product_list_result.state.ProductResultsUIState
 import br.com.everty.shared.utils.Result
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
-class ProductSearchResultsViewModel(
+class ProductResultsViewModel(
     private val getProductSearchListUIUseCase: GetProductSearchListUIUseCase
 ) : ViewModel() {
 
-    var uiState by mutableStateOf(ProductUIState())
+    var uiState by mutableStateOf(ProductResultsUIState())
         private set
 
     fun searchProducts(query: String) = viewModelScope.launch {
-        updateSearchQuery(query)
         getProductSearchListUIUseCase(query)
             .onStart { handleLoading() }
             .collect { result ->
                 when (result) {
-                    is Result.Success -> handleSuccess(result.data)
+                    is Result.Success -> handleSuccess(searchedText = query, productList = result.data)
                     is Result.Error -> handleError(result)
                 }
             }
+    }
+
+    fun updateSearchQuery(newValue: String) {
+        uiState = uiState.copy(inputQuery = newValue.filter { it.isLetterOrDigit() || it.isWhitespace() })
     }
 
     private fun handleLoading() {
@@ -39,9 +42,10 @@ class ProductSearchResultsViewModel(
         )
     }
 
-    private fun handleSuccess(productList: List<ProductModelUI>) {
+    private fun handleSuccess(searchedText: String, productList: List<ProductModelUI>) {
         uiState = uiState.copy(
             productList = productList,
+            searchedText = searchedText,
             isLoading = false
         )
     }
@@ -53,9 +57,5 @@ class ProductSearchResultsViewModel(
             errorCode = result.code.toString(),
             showRetry = result.showRetry
         )
-    }
-
-    fun updateSearchQuery(newValue: String) {
-        uiState = uiState.copy(inputQuery = newValue.filter { it.isLetterOrDigit() || it.isWhitespace() })
     }
 } 

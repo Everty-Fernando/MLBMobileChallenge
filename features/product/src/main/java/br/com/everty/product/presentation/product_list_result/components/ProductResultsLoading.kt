@@ -2,7 +2,6 @@ package br.com.everty.product.presentation.product_list_result.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,7 +16,7 @@ import br.com.everty.shared.presentation.design_system.spacing.AppSpacing
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
 
 @Composable
-fun ProductSearchResultsLoading() {
+fun ProductResultsLoading() {
     Column(
         verticalArrangement = Arrangement.spacedBy(AppSpacing.regular),
         modifier = Modifier.padding(AppSpacing.regular)
@@ -39,8 +38,8 @@ fun ProductSearchResultsLoading() {
 
 @Preview
 @Composable
-fun ProductSearchResultsLoadingPreview() {
+fun ProductResultsLoadingPreview() {
     AppTheme {
-        ProductSearchResultsLoading()
+        ProductResultsLoading()
     }
 }

@@ -2,12 +2,11 @@ package br.com.everty.product.presentation.product_list_result.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.everty.product.presentation.product_list_result.preview.productsPreview
 import br.com.everty.shared.presentation.design_system.components.topbar.AppSearchTopBar
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
 
 @Composable
-fun ProductSearchResultsHeader(
+fun ProductResultsHeader(
     query: String,
     onQueryChange: (String) -> Unit,
     onBackClick: () -> Unit,
@@ -23,9 +22,9 @@ fun ProductSearchResultsHeader(
 
 @Preview
 @Composable
-fun ProductSearchResultsHeaderPreview() {
+fun ProductResultsHeaderPreview() {
     AppTheme {
-        ProductSearchResultsHeader(
+        ProductResultsHeader(
             query = "teste",
             onQueryChange = {},
             onBackClick = {},

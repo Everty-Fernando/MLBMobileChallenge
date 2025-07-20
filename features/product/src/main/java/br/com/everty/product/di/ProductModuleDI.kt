@@ -7,7 +7,7 @@ import br.com.everty.product.domain.usecase.GetProductDetailsUIUseCase
 import br.com.everty.product.domain.usecase.GetProductListUIUseCase
 import br.com.everty.product.domain.usecase.GetProductSearchListUIUseCase
 import br.com.everty.product.presentation.product_details.viewmodel.ProductDetailsViewModel
-import br.com.everty.product.presentation.product_list_result.viewmodel.ProductSearchResultsViewModel
+import br.com.everty.product.presentation.product_list_result.viewmodel.ProductResultsViewModel
 import br.com.everty.product.presentation.product_search.viewmodel.ProductViewModel
 import br.com.everty.product.repository.ProductRepository
 import br.com.everty.product.repository.ProductRepositoryImpl
@@ -35,7 +35,7 @@ private val loadProductFeature by lazy {
 // UI Layer
 private val uiModule = module {
     viewModelOf(::ProductViewModel)
-    viewModelOf(::ProductSearchResultsViewModel)
+    viewModelOf(::ProductResultsViewModel)
     viewModelOf(::ProductDetailsViewModel)
 }
 
