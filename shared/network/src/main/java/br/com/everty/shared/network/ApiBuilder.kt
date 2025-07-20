@@ -39,7 +39,7 @@ class ApiBuilder(
     private fun createHeaderInterceptor() = Interceptor { chain ->
         val request = chain.request().newBuilder()
             .addHeader(HEADER_CONTENT_TYPE, CONTENT_TYPE_JSON)
-            .addHeader(HEADER_AUTHORIZATION, "$AUTH_PREFIX $ACCESS_TOKEN")
+            .addHeader(HEADER_AUTHORIZATION, "$AUTH_PREFIX ${BuildConfig.ACCESS_TOKEN}")
             .build()
         chain.proceed(request)
     }
@@ -52,7 +52,5 @@ class ApiBuilder(
         private const val HEADER_AUTHORIZATION = "Authorization"
         private const val CONTENT_TYPE_JSON = "application/json"
         private const val AUTH_PREFIX = "Bearer"
-        private const val ACCESS_TOKEN = "SEU_TOKEN"
     }
-
 }

@@ -12,6 +12,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "ACCESS_TOKEN", "\"seu_token_aqui\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
