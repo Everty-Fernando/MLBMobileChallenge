@@ -36,7 +36,7 @@ class ProductDetailsViewModel(
     private fun handleLoading() {
         uiState = uiState.copy(
             isLoading = true,
-            errorMessage = null,
+            errorMessage = "",
         )
     }
 
@@ -51,6 +51,7 @@ class ProductDetailsViewModel(
         uiState = uiState.copy(
             isLoading = false,
             errorMessage = result.message,
+            errorCode = result.code.toString(),
             showRetry = result.showRetry
         )
     }

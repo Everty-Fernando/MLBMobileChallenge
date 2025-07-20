@@ -54,6 +54,10 @@ class ProductDetailsFragment : BaseFragment() {
             //Todo(pending implementation)
         }
 
+        override fun onRetry() {
+            viewModel.getDetailsProduct(args.productId)
+        }
+
     }
 
     override fun setupNavigation(view: View) = Unit

@@ -6,4 +6,5 @@ interface ProductDetailsEvents {
     fun onShareClick()
     fun onAddCartClick()
     fun onBuyClick()
+    fun onRetry()
 }

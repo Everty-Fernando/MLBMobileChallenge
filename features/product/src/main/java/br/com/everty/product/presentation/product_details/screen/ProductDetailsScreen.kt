@@ -1,14 +1,15 @@
 package br.com.everty.product.presentation.product_details.screen
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.everty.shared.presentation.design_system.theme.AppTheme
-import br.com.everty.product.presentation.product_details.components.ProductDetailsActionButtons
 import br.com.everty.product.presentation.product_details.components.ProductDetailsBenefits
 import br.com.everty.product.presentation.product_details.components.ProductDetailsDescription
 import br.com.everty.product.presentation.product_details.components.ProductDetailsFeatures
@@ -21,10 +22,11 @@ import br.com.everty.product.presentation.product_details.preview.productDetails
 import br.com.everty.product.presentation.product_details.state.ProductDetailsUIState
 import br.com.everty.shared.presentation.design_system.components.AppScaffold
 import br.com.everty.shared.presentation.design_system.components.divider.AppDivider
+import br.com.everty.shared.presentation.design_system.components.feedback.AppErrorState
 import br.com.everty.shared.presentation.design_system.components.topbar.AppTopBar
-import br.com.everty.shared.presentation.design_system.spacing.AppSpacing
-import androidx.compose.ui.unit.dp
 import br.com.everty.shared.presentation.design_system.dimens.AppDimens
+import br.com.everty.shared.presentation.design_system.spacing.AppSpacing
+import br.com.everty.shared.presentation.design_system.theme.AppTheme
 
 @Composable
 fun ProductDetailsScreen(
@@ -41,7 +43,8 @@ fun ProductDetailsScreen(
             onFavoriteClick = events::onFavoriteClick,
             onShareClick = events::onShareClick,
             onAddCartClick = events::onAddCartClick,
-            onBuyClick = events::onBuyClick
+            onBuyClick = events::onBuyClick,
+            onRetry = events::onRetry,
         )
     }
 }
@@ -52,6 +55,7 @@ fun ProductDetailsScreenContent(
     onBackClick: () -> Unit,
     onFavoriteClick: () -> Unit,
     onShareClick: () -> Unit,
+    onRetry: () -> Unit,
     onAddCartClick: () -> Unit,
     onBuyClick: () -> Unit
 ) {
@@ -65,57 +69,68 @@ fun ProductDetailsScreenContent(
                 onShareClick = onShareClick,
             )
 
-            if (state.isLoading) {
-                ProductDetailsLoading()
-            } else {
-                state.productDetails?.let { product ->
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        item {
-                            ProductDetailsImageCarousel(
-                                imageUrls = product.imageUrls,
-                            )
-                        }
+            when {
+                state.isLoading -> {
+                    ProductDetailsLoading()
+                }
+                state.errorMessage.isNotEmpty() -> {
+                    AppErrorState(
+                        code = state.errorCode,
+                        message = state.errorMessage,
+                        showRetry = state.showRetry,
+                        onRetry = onRetry
+                    )
+                }
+                else -> {
+                    state.productDetails?.let { product ->
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            item {
+                                ProductDetailsImageCarousel(
+                                    imageUrls = product.imageUrls,
+                                )
+                            }
 
-                        item {
-                            Spacer(modifier = Modifier.height(AppDimens.xSmall))
+                            item {
+                                Spacer(modifier = Modifier.height(AppDimens.xSmall))
 
-                            ProductDetailsMainInfo(
-                                title = product.title,
-                                rating = product.rating,
-                                ratingCount = product.ratingCount,
-                                currentPrice = product.currentPrice,
-                                originalPrice = product.originalPrice,
-                                hasFreeShipping = product.hasFreeShipping
-                            )
+                                ProductDetailsMainInfo(
+                                    title = product.title,
+                                    rating = product.rating,
+                                    ratingCount = product.ratingCount,
+                                    currentPrice = product.currentPrice,
+                                    originalPrice = product.originalPrice,
+                                    hasFreeShipping = product.hasFreeShipping
+                                )
 
-                            Spacer(modifier = Modifier.height(AppSpacing.small))
+                                Spacer(modifier = Modifier.height(AppSpacing.small))
 
-                            ProductDetailsSellerInfo(
-                                sellerName = product.sellerName,
-                                stockAvailable = product.stockAvailable
-                            )
+                                ProductDetailsSellerInfo(
+                                    sellerName = product.sellerName,
+                                    stockAvailable = product.stockAvailable
+                                )
 
-                            Spacer(modifier = Modifier.height(AppSpacing.small))
+                                Spacer(modifier = Modifier.height(AppSpacing.small))
 
-                            ProductDetailsBenefits(
-                                arrivesTomorrow = product.arrivesTomorrow,
-                                hasInstallments = product.hasInstallments,
-                                hasWarranty = product.hasWarranty,
-                            )
+                                ProductDetailsBenefits(
+                                    arrivesTomorrow = product.arrivesTomorrow,
+                                    hasInstallments = product.hasInstallments,
+                                    hasWarranty = product.hasWarranty,
+                                )
 
-                            AppDivider(
-                                modifier = Modifier.padding(vertical = AppSpacing.small)
-                            )
+                                AppDivider(
+                                    modifier = Modifier.padding(vertical = AppSpacing.small)
+                                )
 
-                            ProductDetailsDescription(description = product.description)
+                                ProductDetailsDescription(description = product.description)
 
-                            Spacer(modifier = Modifier.height(AppSpacing.small))
+                                Spacer(modifier = Modifier.height(AppSpacing.small))
 
-                            ProductDetailsFeatures(features = product.features)
+                                ProductDetailsFeatures(features = product.features)
 
-                            Spacer(modifier = Modifier.height(AppSpacing.small))
+                                Spacer(modifier = Modifier.height(AppSpacing.small))
+                            }
                         }
                     }
                 }
@@ -145,7 +160,8 @@ private fun ProductSearchResultScreenPreview() {
             onFavoriteClick = {},
             onShareClick = {},
             onAddCartClick = {},
-            onBuyClick = {}
+            onBuyClick = {},
+            onRetry = {}
         )
     }
 }
