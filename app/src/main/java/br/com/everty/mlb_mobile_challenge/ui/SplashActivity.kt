@@ -15,15 +15,23 @@ class SplashActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        redirect() //Todo(pending implementation)
         setContent {
             AppTheme {
-                SplashScreen()
+                Surface(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    SplashScreen(
+                        onAnimationFinished = {
+                            redirect()
+                        }
+                    )
+                }
             }
         }
     }
 
     private fun redirect() {
         startActivity(Intent(this, ProductActivity::class.java))
+        finish()
     }
 }
