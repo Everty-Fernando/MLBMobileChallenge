@@ -15,6 +15,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.everty.shared.presentation.design_system.dimens.AppDimens
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
+import br.com.everty.shared.presentation.design_system.components.image.AppAsyncImage
 
 @Composable
 fun AppImageCarousel(
@@ -33,7 +34,7 @@ fun AppImageCarousel(
                 .fillMaxWidth()
                 .aspectRatio(1f)
         ) { page ->
-            AsyncImage(
+            AppAsyncImage(
                 model = imageUrls[page],
                 contentDescription = null,
                 contentScale = ContentScale.Fit,

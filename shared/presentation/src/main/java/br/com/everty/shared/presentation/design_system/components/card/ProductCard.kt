@@ -32,7 +32,7 @@ import br.com.everty.shared.presentation.design_system.responsive.Dimension
 import br.com.everty.shared.presentation.design_system.responsive.responsiveDp
 import br.com.everty.shared.presentation.design_system.spacing.AppSpacing
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
-import coil.compose.AsyncImage
+import br.com.everty.shared.presentation.design_system.components.image.AppAsyncImage
 
 @Composable
 fun ProductCard(
@@ -57,7 +57,7 @@ fun ProductCard(
         border = BorderStroke(AppDimens.tiny, AppTheme.colors.divider)
     ) {
         Column(modifier = Modifier.padding(AppSpacing.base)) {
-            AsyncImage(
+            AppAsyncImage(
                 model = imageUrl,
                 contentDescription = title,
                 contentScale = ContentScale.Crop,

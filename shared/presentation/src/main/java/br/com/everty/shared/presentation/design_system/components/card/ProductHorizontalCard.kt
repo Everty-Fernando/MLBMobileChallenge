@@ -29,7 +29,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import br.com.everty.shared.presentation.design_system.spacing.AppSpacing
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
-import coil.compose.AsyncImage
+import br.com.everty.shared.presentation.design_system.components.image.AppAsyncImage
 import androidx.compose.foundation.layout.size
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.layout.height
@@ -69,7 +69,7 @@ fun ProductHorizontalCard(
                 .padding(AppSpacing.base),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
+            AppAsyncImage(
                 model = imageUrl,
                 contentDescription = title,
                 contentScale = ContentScale.Crop,
