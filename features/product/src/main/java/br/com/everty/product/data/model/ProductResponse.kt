@@ -18,9 +18,6 @@ data class ProductResponse(
     @SerializedName("main_features")
     val mainFeatures: List<Feature>,
 
-    @SerializedName("status")
-    val status: String,
-
     @SerializedName("permalink")
     val permalink: String?,
 
@@ -36,6 +33,9 @@ data class Picture(
 data class Attribute(
     @SerializedName("id")
     val id: String,
+
+    @SerializedName("name")
+    val name: String?,
 
     @SerializedName("value_name")
     val valueName: String?

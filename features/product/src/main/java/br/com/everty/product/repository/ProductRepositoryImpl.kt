@@ -60,4 +60,16 @@ class ProductRepositoryImpl(
             }
         }
     }
+
+    override fun getProductDetails(productId: String): Flow<Result<ProductResponse>> = flow {
+        when (val result = safeApiCall { service.getProductById(productId) }) {
+            is Result.Success -> emit(Result.Success(result.data))
+            is Result.Error -> emit(Result.Error(
+                message = result.message,
+                code = result.code,
+                showRetry = result.showRetry,
+                exception = result.exception
+            ))
+        }
+    }
 }
