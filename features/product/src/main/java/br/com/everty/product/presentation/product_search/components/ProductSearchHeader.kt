@@ -35,8 +35,6 @@ fun ProductSearchHeader(
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
 
-        Spacer(modifier = Modifier.height(AppSpacing.mini))
-
         Text(
             text = stringResource(R.string.product_search_title_header),
             style = MaterialTheme.typography.bodyMedium,
