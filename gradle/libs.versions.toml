@@ -1,5 +1,6 @@
 [versions]
 # Build
+accompanistSystemuicontroller = "0.32.0"
 agp = "8.6.0"
 kotlin = "2.0.21"
 
@@ -44,6 +45,7 @@ navigationFragment = "2.9.1"
 
 [libraries]
 # AndroidX
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
