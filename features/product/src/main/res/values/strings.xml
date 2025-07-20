@@ -12,4 +12,7 @@
     <string name="product_details_benefit_shipping">Chega grátis amanhã</string>
     <string name="product_details_benefit_installments">Pague em até 12x sem juros</string>
     <string name="product_details_benefit_warranty">Garantia oficial de 1 ano</string>
+    <string name="product_details_sold_by">Vendido por</string>
+    <string name="product_details_avaliable_stock">"Estoque disponível: "</string>
+    <string name="product_details_un">%1$s unidades</string>
 </resources>

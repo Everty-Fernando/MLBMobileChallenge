@@ -20,16 +20,18 @@ fun ProductDetailsActionButtons(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(AppSpacing.regular),
+            .padding(AppSpacing.base),
         horizontalArrangement = Arrangement.spacedBy(AppSpacing.mini)
     ) {
         AppActionButton(
+            modifier = Modifier.fillMaxWidth(0.6f),
             text = stringResource(R.string.product_details_btn_add_cart),
             isPrimary = false,
             onClick = onAddCartClick
         )
 
         AppActionButton(
+            modifier = Modifier.fillMaxWidth(),
             text = stringResource(R.string.product_details_btn_buy),
             onClick = onBuyClick
         )

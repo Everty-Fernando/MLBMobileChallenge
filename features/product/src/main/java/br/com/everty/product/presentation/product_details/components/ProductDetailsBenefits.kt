@@ -1,6 +1,6 @@
 package br.com.everty.product.presentation.product_details.components
 
-import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -23,8 +23,8 @@ fun ProductDetailsBenefits(
     hasWarranty: Boolean,
 ) {
     Column(
-        modifier = Modifier.padding(horizontal = AppSpacing.regular),
-        verticalArrangement = spacedBy(AppSpacing.mini)
+        modifier = Modifier.padding(horizontal = AppSpacing.base),
+        verticalArrangement = Arrangement.spacedBy(AppSpacing.small)
     ) {
         if (arrivesTomorrow) {
               AppTextWithIcon(

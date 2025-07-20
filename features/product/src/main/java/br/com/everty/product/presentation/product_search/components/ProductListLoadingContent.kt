@@ -19,7 +19,7 @@ fun ProductListLoadingContent() {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(AppSpacing.base),
-        verticalArrangement = Arrangement.spacedBy(AppSpacing.large),
+        verticalArrangement = Arrangement.spacedBy(AppSpacing.regular),
         horizontalArrangement = Arrangement.spacedBy(AppSpacing.base),
         modifier = Modifier.fillMaxSize()
     ) {

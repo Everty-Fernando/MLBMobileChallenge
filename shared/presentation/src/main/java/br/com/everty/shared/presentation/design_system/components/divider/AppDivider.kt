@@ -26,6 +26,7 @@ fun AppDivider(
     )
 }
 
+@Preview
 @Composable
 private fun AppDividerPreview() {
     Column(modifier = Modifier.fillMaxWidth()) {

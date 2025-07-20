@@ -29,7 +29,7 @@ fun AppTopBar(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(AppTheme.colors.background)
+            .background(AppTheme.colors.highlight)
             .padding(horizontal = AppSpacing.mini, vertical = AppSpacing.small),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically

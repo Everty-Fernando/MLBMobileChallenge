@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.everty.product.presentation.product_details.events.ProductDetailsEvents
 import br.com.everty.product.presentation.product_details.screen.ProductDetailsScreen
@@ -34,23 +35,23 @@ class ProductDetailsFragment : BaseFragment() {
 
     private val searchEvents = object : ProductDetailsEvents {
         override fun onBackClick() {
-
+            findNavController().popBackStack()
         }
 
         override fun onFavoriteClick() {
+            //Todo(pending implementation)
         }
 
         override fun onShareClick() {
-        }
-
-        override fun onPageImageChanged(pageSelected: Int) {
-
+            //Todo(pending implementation)
         }
 
         override fun onAddCartClick() {
+            //Todo(pending implementation)
         }
 
         override fun onBuyClick() {
+            //Todo(pending implementation)
         }
 
     }

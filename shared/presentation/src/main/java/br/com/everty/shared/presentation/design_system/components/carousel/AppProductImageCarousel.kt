@@ -13,12 +13,12 @@ import br.com.everty.shared.presentation.design_system.components.page_indicator
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.ui.tooling.preview.Preview
+import br.com.everty.shared.presentation.design_system.dimens.AppDimens
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
 
 @Composable
 fun AppImageCarousel(
     imageUrls: List<String>,
-    onPageChanged: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState(
@@ -36,21 +36,22 @@ fun AppImageCarousel(
             AsyncImage(
                 model = imageUrls[page],
                 contentDescription = null,
-                contentScale = ContentScale.Crop,
+                contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp)
-                    .clip(RoundedCornerShape(12.dp))
+                    .clip(AppTheme.shapes.medium)
             )
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(AppDimens.xSmall))
 
-        AppPageIndicator(
-            totalDots = imageUrls.size,
-            selectedIndex = pagerState.currentPage,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
+        if (imageUrls.size > 1) {
+            AppPageIndicator(
+                totalDots = imageUrls.size,
+                selectedIndex = pagerState.currentPage,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+        }
     }
 }
 
@@ -67,7 +68,6 @@ private fun AppImageCarouselPreview() {
 
         AppImageCarousel(
             imageUrls = imageUrls,
-            onPageChanged = {}
         )
     }
 }

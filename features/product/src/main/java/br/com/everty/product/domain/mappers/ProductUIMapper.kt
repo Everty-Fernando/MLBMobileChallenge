@@ -44,7 +44,7 @@ class ProductUIMapper : Mapper<ProductResponse, ProductModelUI> {
     }
 
     private fun generateRandomRating(): Float {
-        return Random.nextDouble(3.5, 5.0).toFloat()
+        return String.format(Locale.US, "%.2f", Random.nextDouble(3.5, 5.0)).toFloat()
     }
 
     private fun generateRandomCount(): Int {

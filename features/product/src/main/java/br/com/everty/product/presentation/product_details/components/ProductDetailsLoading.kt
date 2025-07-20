@@ -52,16 +52,6 @@ fun ProductDetailsLoading() {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Badge "Novo"
-                Box(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                        .width(60.dp)
-                        .height(20.dp)
-                        .clip(RoundedCornerShape(20.dp))
-                        .background(brush)
-                )
-
                 Spacer(modifier = Modifier.height(12.dp))
 
                 // Título

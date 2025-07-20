@@ -9,12 +9,10 @@ import br.com.everty.shared.presentation.design_system.components.carousel.AppIm
 @Composable
 fun ProductDetailsImageCarousel(
     imageUrls: List<String>,
-    onPageChanged: (Int) -> Unit
 ) {
     AppImageCarousel(
         imageUrls = imageUrls,
         modifier = Modifier.fillMaxWidth(),
-        onPageChanged = onPageChanged
     )
 }
 
@@ -26,6 +24,5 @@ private fun ProductDetailsImageCarouselPreview() {
             "https://placehold.co/600x400",
             "https://placehold.co/600x401"
         ),
-        onPageChanged = {}
     )
 }
