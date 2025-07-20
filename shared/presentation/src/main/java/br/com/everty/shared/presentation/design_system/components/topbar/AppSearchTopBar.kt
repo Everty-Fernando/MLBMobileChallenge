@@ -35,7 +35,7 @@ fun AppSearchTopBar(
         modifier = modifier
             .fillMaxWidth()
             .background(AppTheme.colors.highlight)
-            .padding(vertical = AppSpacing.base, horizontal = AppSpacing.regular),
+            .padding(vertical = AppSpacing.base, horizontal = AppSpacing.mini),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

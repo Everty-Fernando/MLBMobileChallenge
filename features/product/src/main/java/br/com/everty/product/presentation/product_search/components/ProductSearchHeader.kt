@@ -13,8 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.everty.product.R
-import br.com.everty.shared.presentation.design_system.components.button.AppIconButton
-import br.com.everty.shared.presentation.design_system.components.divider.AppDivider
 import br.com.everty.shared.presentation.design_system.components.logo.AppLogo
 import br.com.everty.shared.presentation.design_system.components.search_bar.AppSearchBar
 import br.com.everty.shared.presentation.design_system.spacing.AppSpacing

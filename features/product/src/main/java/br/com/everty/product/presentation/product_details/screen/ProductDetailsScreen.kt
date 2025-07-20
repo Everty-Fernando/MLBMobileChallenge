@@ -69,7 +69,7 @@ fun ProductDetailsScreenContent(
             onFavoriteClick = onFavoriteClick,
             onShareClick = onShareClick,
         )
-        if (!state.isLoading) {
+        if (state.isLoading) {
             ProductDetailsLoading()
         } else {
             state.productDetails?.let { product ->
@@ -88,7 +88,6 @@ fun ProductDetailsScreenContent(
 
                         ProductDetailsMainInfo(
                             title = product.title,
-                            isNew = product.isNew,
                             rating = product.rating,
                             ratingCount = product.ratingCount,
                             currentPrice = product.currentPrice,
@@ -105,7 +104,11 @@ fun ProductDetailsScreenContent(
 
                         Spacer(modifier = Modifier.height(AppDimens.xSmall))
 
-                        ProductDetailsBenefits(benefits = product.benefits)
+                        ProductDetailsBenefits(
+                            arrivesTomorrow = product.arrivesTomorrow,
+                            hasInstallments = product.hasInstallments,
+                            hasWarranty = product.hasWarranty,
+                        )
 
                         AppDivider(Modifier.padding(vertical = AppDimens.xSmall))
 

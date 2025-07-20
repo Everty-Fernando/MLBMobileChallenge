@@ -9,4 +9,7 @@
     <string name="product_details_btn_add_cart">Adicionar ao carrinho</string>
     <string name="product_details_btn_buy">Comprar</string>
     <string name="product_details_features">Características principais</string>
+    <string name="product_details_benefit_shipping">Chega grátis amanhã</string>
+    <string name="product_details_benefit_installments">Pague em até 12x sem juros</string>
+    <string name="product_details_benefit_warranty">Garantia oficial de 1 ano</string>
 </resources>

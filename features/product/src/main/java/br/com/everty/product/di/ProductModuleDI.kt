@@ -1,7 +1,9 @@
 package br.com.everty.product.di
 
 import br.com.everty.product.data.api.ProductAPI
+import br.com.everty.product.domain.mappers.ProductDetailsUIMapper
 import br.com.everty.product.domain.mappers.ProductUIMapper
+import br.com.everty.product.domain.usecase.GetProductDetailsUIUseCase
 import br.com.everty.product.domain.usecase.GetProductListUIUseCase
 import br.com.everty.product.domain.usecase.GetProductSearchListUIUseCase
 import br.com.everty.product.presentation.product_details.viewmodel.ProductDetailsViewModel
@@ -41,7 +43,10 @@ private val uiModule = module {
 private val domainModule = module {
     factoryOf(::GetProductListUIUseCase)
     factoryOf(::GetProductSearchListUIUseCase)
+    factoryOf(::GetProductDetailsUIUseCase)
+
     factoryOf(::ProductUIMapper)
+    factoryOf(::ProductDetailsUIMapper)
 }
 
 // Repository Layer

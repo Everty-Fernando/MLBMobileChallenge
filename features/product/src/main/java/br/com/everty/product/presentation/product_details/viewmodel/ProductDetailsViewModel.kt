@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.everty.product.domain.model.ProductDetailsModelUI
 import br.com.everty.product.domain.model.ProductModelUI
+import br.com.everty.product.domain.usecase.GetProductDetailsUIUseCase
 import br.com.everty.product.domain.usecase.GetProductSearchListUIUseCase
 import br.com.everty.product.presentation.product_details.state.ProductDetailsUIState
 import br.com.everty.product.presentation.product_search.state.ProductUIState
@@ -15,14 +16,21 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class ProductDetailsViewModel(
-    private val getProductSearchListUIUseCase: GetProductSearchListUIUseCase
+    private val getProductDetailsUIUseCase: GetProductDetailsUIUseCase
 ) : ViewModel() {
 
     var uiState by mutableStateOf(ProductDetailsUIState())
         private set
 
     fun getDetailsProduct(productId: String) = viewModelScope.launch {
-
+        getProductDetailsUIUseCase(productId)
+            .onStart { handleLoading() }
+            .collect { result ->
+                when (result) {
+                    is Result.Success -> handleSuccess(result.data)
+                    is Result.Error -> handleError(result)
+                }
+            }
     }
 
     private fun handleLoading() {

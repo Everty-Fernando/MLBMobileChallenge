@@ -66,4 +66,6 @@ dependencies {
     testImplementation(libs.junit)
 
     implementation(libs.timber)
+
+    implementation(libs.androidx.material.icons.extended)
 }

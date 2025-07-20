@@ -36,9 +36,7 @@ fun ProductListLoadingContent() {
         }
 
         items(6) {
-            AppShimmerLoader { brush ->
-                ProductCardSkeleton()
-            }
+            ProductCardSkeleton()
         }
     }
 }
