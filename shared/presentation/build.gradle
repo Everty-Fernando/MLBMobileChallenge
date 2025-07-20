@@ -45,4 +45,7 @@ dependencies {
     implementation libs.coil.compose
 
     debugImplementation(libs.androidx.ui.tooling)
+
+    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.lottie.compose)
 }

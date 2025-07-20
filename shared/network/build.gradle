@@ -5,13 +5,20 @@ plugins {
 
 android {
     namespace 'br.com.everty.shared.network'
-    compileSdk 35
+    compileSdk ApplicationConfig.compileSdkVersion
 
     defaultConfig {
-        minSdk 24
+        minSdk ApplicationConfig.minSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "ACCESS_TOKEN", "\"seu_token_aqui\"")
+        buildConfigField("String", "BASE_DEV", "\"https://api.mercadolibre.com/\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -30,11 +37,16 @@ android {
 }
 
 dependencies {
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.appcompat
-    implementation libs.material
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.junit
-    androidTestImplementation libs.androidx.espresso.core
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
+
+    implementation(libs.koin.android)
+
+    implementation(project(SharedModules.utils))
 }

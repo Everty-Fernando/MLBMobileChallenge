@@ -1,5 +1,6 @@
 package br.com.everty.shared.presentation.design_system.components.topbar
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,17 +24,18 @@ import br.com.everty.shared.presentation.design_system.spacing.AppSpacing
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
 
 @Composable
-fun SearchTopBar(
+fun AppSearchTopBar(
     query: String,
     onQueryChange: (String) -> Unit,
     onBackClick: () -> Unit,
-    onFilterClick: () -> Unit,
+    onSearchClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(AppSpacing.base),
+            .background(AppTheme.colors.highlight)
+            .padding(vertical = AppSpacing.base, horizontal = AppSpacing.mini),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -50,17 +52,10 @@ fun SearchTopBar(
                 .weight(1f)
                 .padding(horizontal = AppSpacing.small),
             text = query,
-            onValueChange = onQueryChange,
             placeholderText = "Buscar produto...",
+            onValueChange = onQueryChange,
+            onSearchClick = onSearchClick
         )
-
-        IconButton(onClick = onFilterClick) {
-            Icon(
-                imageVector = Icons.Outlined.List,
-                contentDescription = "Filtrar",
-                tint = MaterialTheme.colorScheme.onBackground
-            )
-        }
     }
 }
 
@@ -70,11 +65,11 @@ private fun SearchTopBarPreview() {
     var query by remember { mutableStateOf("teste") }
 
     AppTheme {
-        SearchTopBar(
+        AppSearchTopBar(
             query = query,
             onQueryChange = { query = it },
             onBackClick = {},
-            onFilterClick = {}
+            onSearchClick = {}
         )
     }
 }
