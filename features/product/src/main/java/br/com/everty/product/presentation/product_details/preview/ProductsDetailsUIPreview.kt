@@ -10,7 +10,6 @@ val productDetailsMock = ProductDetailsModelUI(
         "https://placehold.co/600x400",
         "https://placehold.co/600x400"
     ),
-    isNew = true,
     isFavorite = false,
     title = "iPhone 14 Pro Max 128GB - Deep Purple",
     rating = 4.8f,
@@ -19,13 +18,10 @@ val productDetailsMock = ProductDetailsModelUI(
     originalPrice = "R$ 4.799,99",
     hasFreeShipping = true,
     sellerName = "TechStore Oficial",
-    sellerLink = "",
+    hasInstallments = false,
+    hasWarranty = false,
+    arrivesTomorrow = false,
     stockAvailable = 15,
-    benefits = listOf(
-        "Chega grátis amanhã",
-        "Pague em até 12x sem juros",
-        "Garantia oficial de 1 ano"
-    ),
     description = "O iPhone 14 Pro Max conta com o chip A16 Bionic, sistema de câmera Pro avançado com câmera principal de 48MP, tela Super Retina XDR de 6.7 polegadas com ProMotion, e até 29 horas de reprodução de vídeo.",
     features = listOf(
         "Tela Super Retina XDR de 6.7 polegadas",

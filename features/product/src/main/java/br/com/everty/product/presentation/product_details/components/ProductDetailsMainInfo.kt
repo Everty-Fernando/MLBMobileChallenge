@@ -17,7 +17,6 @@ import br.com.everty.shared.presentation.design_system.theme.AppTheme
 @Composable
 fun ProductDetailsMainInfo(
     title: String,
-    isNew: Boolean,
     rating: Float,
     ratingCount: Int,
     currentPrice: String,
@@ -25,11 +24,6 @@ fun ProductDetailsMainInfo(
     hasFreeShipping: Boolean
 ) {
     Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-        if (isNew) {
-            AppBadgeLabel(text = "Novo")
-            Spacer(modifier = Modifier.height(4.dp))
-        }
-
         Text(text = title, style = MaterialTheme.typography.titleMedium)
 
         AppRatingInfo(rating = rating, totalReviews = ratingCount)
@@ -66,7 +60,6 @@ fun ProductDetailsMainInfo(
 fun ProductDetailsMainInfoPreview() {
     ProductDetailsMainInfo(
         title = "iPhone 14 Pro Max 128GB - Deep Purple",
-        isNew = true,
         rating = 4.8f,
         ratingCount = 1247,
         currentPrice = "R$ 4.299,99",

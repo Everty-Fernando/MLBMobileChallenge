@@ -3,8 +3,7 @@ package br.com.everty.product.domain.model
 data class ProductDetailsModelUI(
     val id: String,
     val imageUrls: List<String>,
-    val isNew: Boolean,
-    val isFavorite: Boolean,
+    val isFavorite: Boolean = false,
     val title: String,
     val rating: Float,
     val ratingCount: Int,
@@ -12,9 +11,10 @@ data class ProductDetailsModelUI(
     val currentPrice: String,
     val hasFreeShipping: Boolean,
     val sellerName: String,
-    val sellerLink: String?,
     val stockAvailable: Int,
-    val benefits: List<String>,
+    val arrivesTomorrow: Boolean,
+    val hasInstallments: Boolean,
+    val hasWarranty: Boolean,
     val description: String,
     val features: List<String>
 )
