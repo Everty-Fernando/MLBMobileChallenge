@@ -3,6 +3,7 @@ package br.com.everty.product.presentation.product_search.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -22,6 +23,7 @@ import br.com.everty.product.presentation.product_search.preview.productsHighlig
 import br.com.everty.shared.presentation.design_system.components.card.ProductCard
 import br.com.everty.shared.presentation.design_system.spacing.AppSpacing
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun ProductSearchContent(
@@ -29,7 +31,7 @@ fun ProductSearchContent(
     onProductClick: (String) -> Unit
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
+        columns = GridCells.Adaptive(minSize = 160.dp),
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             horizontal = AppSpacing.regular,
@@ -38,7 +40,7 @@ fun ProductSearchContent(
         verticalArrangement = Arrangement.spacedBy(AppSpacing.small),
         horizontalArrangement = Arrangement.spacedBy(AppSpacing.small)
     ) {
-        item(span = { GridItemSpan(2) }) {
+        item(span = { GridItemSpan(maxLineSpan) }) {
             Text(
                 text = stringResource(R.string.product_search_title_highlights),
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Medium),
@@ -49,6 +51,7 @@ fun ProductSearchContent(
 
         items(products) { product ->
             ProductCard(
+                modifier = Modifier.fillMaxWidth(),
                 imageUrl = product.imageUrl,
                 title = product.title,
                 currentPrice = product.currentPrice,

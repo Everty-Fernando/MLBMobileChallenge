@@ -62,13 +62,9 @@ class ProductResultsFragment : BaseFragment() {
         findNavController().navigate(action)
     }
 
-    override fun setupNavigation(view: View) = Unit
-
     override fun setupViews() {
         viewModel.searchProducts(args.query)
         viewModel.updateSearchQuery(args.query)
     }
-
-    override fun setupObservers() = Unit
 
 }

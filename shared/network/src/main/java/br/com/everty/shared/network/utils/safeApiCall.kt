@@ -13,15 +13,17 @@ suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): Result<T> {
             if (body != null) {
                 Result.Success(body)
             } else {
-               Result.Error(
-                    message = "Resposta vazia",
+                Timber.w("safeApiCall: resposta vazia para código ${response.code()}")
+                Result.Error(
+                    message = "Ocorreu um erro inesperado. Tente novamente mais tarde.",
                     code = response.code(),
                     showRetry = true
                 )
             }
         } else {
             val code = response.code()
-           Result.Error(
+            Timber.w("safeApiCall HTTP error: code=$code, message=${response.errorBody()?.string()}")
+            Result.Error(
                 message = mapErrorMessage(code),
                 code = code,
                 showRetry = code in listOf(500, 404)
