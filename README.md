@@ -93,5 +93,3 @@ No terminal, execute:
 ./gradlew test
 ```
 Ou rode os testes diretamente pelo Android Studio, clicando com o botão direito na pasta `test` do módulo desejado e selecionando "Run Tests".
-
-> Os testes unitários garantem que as principais regras de negócio e integrações do app funcionem corretamente, facilitando a manutenção e evolução do código.
