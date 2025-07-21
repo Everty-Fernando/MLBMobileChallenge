@@ -2,11 +2,13 @@
 # Build
 accompanistSystemuicontroller = "0.32.0"
 agp = "8.6.0"
+coreTesting = "2.2.0"
 kotlin = "2.0.21"
 
 # AndroidX
 coreKtx = "1.16.0"
 appcompat = "1.7.1"
+kotlinxCoroutinesTest = "1.8.0"
 lifecycleRuntimeKtx = "2.8.1"
 
 # Compose
@@ -14,6 +16,7 @@ composeBom = "2024.09.00"
 activityCompose = "1.10.1"
 lottieCompose = "6.3.0"
 materialIconsExtended = "1.5.4"
+mockk = "1.13.10"
 navigationCompose = "2.7.7"
 timber = "5.0.1"
 viewModelCompose = "2.7.0"
@@ -49,6 +52,7 @@ navigationFragment = "2.9.1"
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
@@ -66,7 +70,9 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 # Retrofit / OkHttp / Gson
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }

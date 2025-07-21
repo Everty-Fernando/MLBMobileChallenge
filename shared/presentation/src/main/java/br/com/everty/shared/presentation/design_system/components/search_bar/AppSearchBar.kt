@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.everty.shared.presentation.design_system.components.input.appSearchTextFieldColors
@@ -28,6 +29,7 @@ fun AppSearchBar(
     onSearchClick: () -> Unit,
     leadingIcon: @Composable (() -> Unit)? = null
 ) {
+    val focusManager = LocalFocusManager.current
     OutlinedTextField(
         value = text,
         onValueChange = onValueChange,
@@ -52,6 +54,7 @@ fun AppSearchBar(
         ),
         keyboardActions = KeyboardActions(
             onSearch = {
+                focusManager.clearFocus()
                 onSearchClick()
             }
         )
