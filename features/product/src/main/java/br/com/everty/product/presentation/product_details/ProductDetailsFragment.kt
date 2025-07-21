@@ -60,12 +60,7 @@ class ProductDetailsFragment : BaseFragment() {
 
     }
 
-    override fun setupNavigation(view: View) = Unit
-
     override fun setupViews() {
         viewModel.getDetailsProduct(args.productId)
     }
-
-    override fun setupObservers() = Unit
-
 }

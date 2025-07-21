@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import br.com.everty.product.presentation.product_search.events.ProductSearchEvents
 import br.com.everty.product.presentation.product_search.screen.ProductSearchScreen
@@ -61,12 +60,7 @@ class ProductSearchFragment : BaseFragment() {
         findNavController().navigate(action)
     }
 
-    override fun setupNavigation(view: View) = Unit
-
     override fun setupViews() {
         viewModel.loadProductList()
     }
-
-    override fun setupObservers() = Unit
-
 }
