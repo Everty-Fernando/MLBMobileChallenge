@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/product_nav_graph"
+    app:startDestination="@id/productSearchFragment">
+
+    <fragment
+        android:id="@+id/productSearchFragment"
+        android:name="br.com.everty.product.presentation.product_search.ProductSearchFragment"
+        android:label="ProductSearchFragment">
+        <action
+            android:id="@+id/action_productSearchFragment_to_productListResultsFragment"
+            app:destination="@id/productListResultsFragment" />
+        <action
+            android:id="@+id/action_productSearchFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productListResultsFragment"
+        android:name="br.com.everty.product.presentation.product_list_result.ProductResultsFragment"
+        android:label="productListResultsFragment">
+        <argument
+            android:name="query"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productListResultsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="br.com.everty.product.presentation.product_details.ProductDetailsFragment"
+        android:label="ProductDetailsFragment">
+        <argument
+            android:name="productId"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
