@@ -7,6 +7,7 @@ import br.com.everty.shared.network.utils.safeApiCall
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import br.com.everty.shared.utils.Result
+import kotlinx.coroutines.delay
 import timber.log.Timber
 
 class ProductRepositoryImpl(
@@ -41,7 +42,10 @@ class ProductRepositoryImpl(
 
     override fun getProductDetails(productId: String): Flow<Result<ProductResponse>> = flow {
         when (val result = safeApiCall { service.getProductById(productId) }) {
-            is Result.Success -> emit(Result.Success(result.data))
+            is Result.Success -> {
+                delay(200)
+                emit(Result.Success(result.data))
+            }
             is Result.Error -> emit(result.toTypedError())
         }
     }

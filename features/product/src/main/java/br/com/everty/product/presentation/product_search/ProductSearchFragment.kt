@@ -38,7 +38,7 @@ class ProductSearchFragment : BaseFragment() {
         }
 
         override fun onSearchClick(query: String) {
-            viewModel.clearSearchQuery()
+            viewModel.clearSearchState()
             navigateToProductSearch(query)
         }
 
@@ -48,6 +48,14 @@ class ProductSearchFragment : BaseFragment() {
 
         override fun onRetry() {
             viewModel.loadProductList()
+        }
+
+        override fun onSearchIconClick() {
+            viewModel.startSearch()
+        }
+
+        override fun onCloseSearch() {
+            viewModel.closeSearch()
         }
     }
 
