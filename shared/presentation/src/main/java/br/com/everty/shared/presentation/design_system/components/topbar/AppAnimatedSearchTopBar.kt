@@ -19,6 +19,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
@@ -40,6 +42,14 @@ fun AppAnimatedSearchTopBar(
     onCloseSearch: () -> Unit,
     onSearchClick: () -> Unit = {}
 ) {
+    val focusRequester = remember { FocusRequester() }
+    
+    LaunchedEffect(isSearching) {
+        if (isSearching) {
+            focusRequester.requestFocus()
+        }
+    }
+
     Surface(
         modifier = modifier
             .fillMaxWidth()
@@ -93,6 +103,7 @@ fun AppAnimatedSearchTopBar(
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
+                                .focusRequester(focusRequester)
                         )
                         Icon(
                             imageVector = Icons.Default.Close,
