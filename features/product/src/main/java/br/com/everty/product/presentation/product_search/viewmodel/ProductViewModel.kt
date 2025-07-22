@@ -9,6 +9,7 @@ import br.com.everty.product.domain.model.ProductModelUI
 import br.com.everty.product.domain.usecase.GetProductListUIUseCase
 import br.com.everty.product.presentation.product_search.state.ProductUIState
 import br.com.everty.shared.utils.Result
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
@@ -34,8 +35,17 @@ class ProductViewModel(
         uiState = uiState.copy(inputQuery = newValue.filter { it.isLetterOrDigit() || it.isWhitespace() })
     }
 
-    fun clearSearchQuery() {
-        uiState = uiState.copy(inputQuery = "")
+    fun clearSearchState() = viewModelScope.launch {
+        delay(200)
+        uiState = uiState.copy(inputQuery = "", isSearching = false)
+    }
+
+    fun startSearch() {
+        uiState = uiState.copy(isSearching = true)
+    }
+
+    fun closeSearch() {
+        uiState = uiState.copy(isSearching = false)
     }
 
     private fun handleLoading() {

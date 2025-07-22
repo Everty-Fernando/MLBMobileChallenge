@@ -42,7 +42,7 @@ fun AppTheme(
     SideEffect {
         systemUiController.setStatusBarColor(
             color = colors.highlight,
-            darkIcons = false
+            darkIcons = true
         )
     }
 

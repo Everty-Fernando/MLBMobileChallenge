@@ -35,6 +35,8 @@ fun ProductSearchScreen(
             onSearchClick = events::onSearchClick,
             onProductDetailsClick = events::onProductDetailsClick,
             onRetry = events::onRetry,
+            onSearchIconClick = events::onSearchIconClick,
+            onCloseSearch = events::onCloseSearch
         )
     }
 }
@@ -46,6 +48,8 @@ fun ProductSearchScreenContent(
     onSearchClick: (String) -> Unit,
     onProductDetailsClick: (String) -> Unit,
     onRetry: () -> Unit,
+    onSearchIconClick: () -> Unit,
+    onCloseSearch: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -54,8 +58,11 @@ fun ProductSearchScreenContent(
     ) {
         ProductSearchHeader(
             query = state.inputQuery,
+            isSearching = state.isSearching,
             onQueryChange = onValueChangeSearch,
-            onSearchClick = { onSearchClick(state.inputQuery) }
+            onSearchClick = { onSearchClick(state.inputQuery) },
+            onSearchIconClick = onSearchIconClick,
+            onCloseSearch = onCloseSearch
         )
 
         when {
@@ -98,7 +105,9 @@ private fun ProductSearchScreenContent_Giro_Preview() {
             onValueChangeSearch = {},
             onSearchClick = {},
             onProductDetailsClick = {},
-            onRetry = {}
+            onRetry = {},
+            onSearchIconClick = {},
+            onCloseSearch = {},
         )
     }
 }

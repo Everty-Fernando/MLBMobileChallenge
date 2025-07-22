@@ -1,32 +1,54 @@
 package br.com.everty.mlb_mobile_challenge.ui.screen
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import br.com.everty.shared.presentation.design_system.components.loader.AppLottieAnimation
+import br.com.everty.shared.presentation.R
+import br.com.everty.shared.presentation.design_system.components.logo.AppLogo
+import br.com.everty.shared.presentation.design_system.responsive.responsiveDp
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
     onAnimationFinished: () -> Unit = {}
 ) {
-    val systemUiController = rememberSystemUiController()
-    SideEffect {
-        systemUiController.setStatusBarColor(
-            color = Color.White,
-            darkIcons = true
-        )
+    var visible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        visible = true
+        delay(1000)
+        onAnimationFinished()
     }
 
-    AppLottieAnimation(
-        assetName = "splash_screen.json",
-        size = 200.dp,
-        iterations = 1,
-        onFinished = onAnimationFinished
-    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(AppTheme.colors.highlight),
+        contentAlignment = Alignment.Center
+    ) {
+        AnimatedVisibility(
+            visible = visible,
+            enter = fadeIn(animationSpec = tween(durationMillis = 1000)),
+        ) {
+            AppLogo(
+                sizeLogo = responsiveDp(0.5f),
+                imgLogo = R.drawable.logo_mercado_livre
+            )
+        }
+    }
 }
 
 @Composable

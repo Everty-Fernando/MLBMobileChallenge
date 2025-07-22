@@ -24,6 +24,7 @@ fun AppLottieAnimation(
     modifier: Modifier = Modifier,
     size: Dp = 200.dp,
     iterations: Int = 1,
+    speed: Float = 1.0f,
     onFinished: (() -> Unit)? = null
 ) {
     var isAnimationFinished by remember { mutableStateOf(false) }
@@ -31,6 +32,7 @@ fun AppLottieAnimation(
     val progress by animateLottieCompositionAsState(
         composition = composition,
         iterations = iterations,
+        speed = speed,
         isPlaying = true
     )
     LaunchedEffect(progress) {
@@ -46,8 +48,8 @@ fun AppLottieAnimation(
     ) {
         LottieAnimation(
             composition = composition,
-            progress = { progress },
-            modifier = Modifier.size(size)
+            modifier = Modifier.size(size),
+            speed = speed
         )
     }
 } 
