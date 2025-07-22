@@ -1,7 +1,9 @@
 package br.com.everty.product.presentation.product_list_result.events
 
-import br.com.everty.product.presentation.product_search.events.ProductSearchEvents
-
-interface ProductResultEvents: ProductSearchEvents {
+interface ProductResultEvents {
     fun onBackClick()
+    fun onSearchClick(query: String)
+    fun onProductDetailsClick(productId: String)
+    fun onValueChangeSearch(value: String)
+    fun onRetry()
 }

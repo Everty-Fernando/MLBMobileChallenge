@@ -44,6 +44,8 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.coil.compose
 
+    implementation libs.androidx.navigation.fragment
+
     debugImplementation(libs.androidx.ui.tooling)
 
     implementation(libs.accompanist.systemuicontroller)

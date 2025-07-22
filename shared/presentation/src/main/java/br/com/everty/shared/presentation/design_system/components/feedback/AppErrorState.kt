@@ -4,9 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,12 +16,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.everty.shared.presentation.design_system.components.button.AppActionButton
 import br.com.everty.shared.presentation.design_system.components.loader.AppLottieAnimation
+import com.airbnb.lottie.compose.LottieConstants
 
 @Composable
 fun AppErrorState(
     modifier: Modifier = Modifier,
     lottieAsset: String = "error_state.json",
-    lottieSize: Dp = 180.dp,
+    lottieSize: Dp = 300.dp,
     code: String,
     message: String,
     showRetry: Boolean = false,
@@ -41,21 +41,21 @@ fun AppErrorState(
             AppLottieAnimation(
                 assetName = lottieAsset,
                 size = lottieSize,
-                iterations = 1
+                iterations = LottieConstants.IterateForever
             )
             Text(
                 text = code,
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.error,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)
+                modifier = Modifier.padding(top = 16.dp, bottom = 8.dp).offset(y = (-50).dp)
             )
             Text(
                 text = message,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onBackground,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(bottom = 24.dp)
+                modifier = Modifier.padding(bottom = 24.dp).offset(y = (-50).dp)
             )
             if (showRetry && onRetry != null) {
                 AppActionButton(text = retryText, onClick = onRetry)

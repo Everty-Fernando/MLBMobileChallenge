@@ -44,12 +44,10 @@ fun ProductCard(
     onProductClick: () -> Unit
 ) {
     val cardWidth = responsiveDp(0.45f, Dimension.Width)
-    val imageHeight = responsiveDp(0.20f, Dimension.Height)
 
     Card(
         modifier = modifier
             .width(cardWidth)
-            .aspectRatio(0.55f)
             .clickable { onProductClick() },
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
@@ -63,7 +61,7 @@ fun ProductCard(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(imageHeight)
+                    .height(120.dp)
                     .aspectRatio(1f)
                     .clip(MaterialTheme.shapes.medium)
             )
@@ -106,12 +104,10 @@ fun ProductCard(
 @Composable
 fun ProductCardSkeleton(modifier: Modifier = Modifier) {
     val cardWidth = responsiveDp(0.45f, Dimension.Width)
-    val imageHeight = responsiveDp(0.20f, Dimension.Height)
     AppShimmerLoader { brush ->
         Card(
             modifier = modifier
-                .width(cardWidth)
-                .aspectRatio(0.55f),
+                .width(cardWidth),
             shape = MaterialTheme.shapes.medium,
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(defaultElevation = AppDimens.micro),
@@ -121,7 +117,7 @@ fun ProductCardSkeleton(modifier: Modifier = Modifier) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(imageHeight)
+                        .height(120.dp)
                         .aspectRatio(1f)
                         .clip(MaterialTheme.shapes.medium)
                         .background(brush)
@@ -133,12 +129,12 @@ fun ProductCardSkeleton(modifier: Modifier = Modifier) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(16.dp)
+                        .height(32.dp)
                         .clip(RoundedCornerShape(4.dp))
                         .background(brush)
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(AppSpacing.small))
 
                 // Preço original
                 Box(

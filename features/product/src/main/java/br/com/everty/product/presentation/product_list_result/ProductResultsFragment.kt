@@ -13,6 +13,7 @@ import br.com.everty.product.presentation.product_list_result.viewmodel.ProductR
 import br.com.everty.product.presentation.product_search.ProductSearchFragmentDirections
 import br.com.everty.shared.presentation.design_system.theme.AppTheme
 import br.com.everty.shared.presentation.utils.BaseFragment
+import br.com.everty.shared.presentation.utils.navigation.defaultNavOptions
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductResultsFragment : BaseFragment() {
@@ -59,16 +60,12 @@ class ProductResultsFragment : BaseFragment() {
 
     private fun navigateToProductDetails(productId: String) {
         val action = ProductSearchFragmentDirections.actionProductSearchFragmentToProductListResultsFragment(productId)
-        findNavController().navigate(action)
+        findNavController().navigate(action, defaultNavOptions())
     }
-
-    override fun setupNavigation(view: View) = Unit
 
     override fun setupViews() {
         viewModel.searchProducts(args.query)
         viewModel.updateSearchQuery(args.query)
     }
-
-    override fun setupObservers() = Unit
 
 }
