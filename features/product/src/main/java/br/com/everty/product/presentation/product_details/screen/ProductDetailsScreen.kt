@@ -123,7 +123,9 @@ fun ProductDetailsScreenContent(
                                     modifier = Modifier.padding(vertical = AppSpacing.small)
                                 )
 
-                                ProductDetailsDescription(description = product.description)
+                                product.description.takeIf { it.isNotBlank() }?.let { description ->
+                                    ProductDetailsDescription(description = description)
+                                }
 
                                 Spacer(modifier = Modifier.height(AppSpacing.small))
 
@@ -150,7 +152,7 @@ fun ProductDetailsScreenContent(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ProductSearchResultScreenPreview() {
     AppTheme {

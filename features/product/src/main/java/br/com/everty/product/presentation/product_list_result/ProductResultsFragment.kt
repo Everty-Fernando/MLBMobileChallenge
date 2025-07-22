@@ -59,7 +59,7 @@ class ProductResultsFragment : BaseFragment() {
     }
 
     private fun navigateToProductDetails(productId: String) {
-        val action = ProductSearchFragmentDirections.actionProductSearchFragmentToProductListResultsFragment(productId)
+        val action = ProductResultsFragmentDirections.actionProductListResultsFragmentToProductDetailsFragment(productId)
         findNavController().navigate(action, defaultNavOptions())
     }
 
