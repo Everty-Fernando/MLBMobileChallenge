@@ -2,7 +2,6 @@ package br.com.everty.shared.network.utils
 
 fun mapErrorMessage(code: Int?): String {
     return when (code) {
-        400 -> "Requisição inválida. Verifique os dados."
         401 -> "Token expirado. Renove o seu token."
         403 -> "Você não tem permissão para acessar esse recurso."
         404 -> "Recurso não encontrado."

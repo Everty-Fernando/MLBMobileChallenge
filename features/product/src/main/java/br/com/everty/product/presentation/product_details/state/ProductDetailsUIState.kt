@@ -6,6 +6,6 @@ data class ProductDetailsUIState(
     val productDetails: ProductDetailsModelUI? = null,
     val isLoading: Boolean = false,
     val errorMessage: String = "",
-    val errorCode: String = "",
+    val errorCode: String? = "",
     val showRetry: Boolean = false,
 )

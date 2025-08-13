@@ -93,3 +93,11 @@ No terminal, execute:
 ./gradlew test
 ```
 Ou rode os testes diretamente pelo Android Studio, clicando com o botão direito na pasta `test` do módulo desejado e selecionando "Run Tests".
+
+
+### Demonstração
+![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/d0fa3916-950d-4223-8011-58fad2efc346)
+![ezgif com-video-to-gif-converter (1)](https://github.com/user-attachments/assets/70ff8365-fe9b-4081-a20e-6770d2adc8ca)
+![ezgif com-video-to-gif-converter (2)](https://github.com/user-attachments/assets/4a653f4f-281d-4d0b-9624-a9e954fad5dd)
+![WhatsAppVideo2025-07-23at10 20 21-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/dd1d25d7-a2c7-4e11-b88c-474e36305594)
+

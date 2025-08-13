@@ -5,36 +5,46 @@ import br.com.everty.shared.utils.Result
 import timber.log.Timber
 
 suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): Result<T> {
-    return try {
+    return  try {
         val response = apiCall()
-
-        if (response.isSuccessful) {
-            val body = response.body()
-            if (body != null) {
-                Result.Success(body)
-            } else {
-                Timber.w("safeApiCall: resposta vazia para código ${response.code()}")
-                Result.Error(
-                    message = "Ocorreu um erro inesperado. Tente novamente mais tarde.",
-                    code = response.code(),
-                    showRetry = true
-                )
-            }
-        } else {
-            val code = response.code()
-            Timber.w("safeApiCall HTTP error: code=$code, message=${response.errorBody()?.string()}")
-            Result.Error(
-                message = mapErrorMessage(code),
-                code = code,
-                showRetry = code in listOf(500, 404)
-            )
-        }
+        response.toResult()
     } catch (e: Exception) {
         Timber.e(e, "safeApiCall failed: ${e.message}")
         Result.Error(
             message = "Erro de conexão. Verifique sua internet.",
-            exception = e,
             showRetry = true
         )
     }
 }
+
+private fun <T> Response<T>.toResult(): Result<T> {
+    val httpCode = code()
+    return if (isSuccessful) {
+        body()?.let { Result.Success(it) }
+            ?: run {
+                Timber.w("safeApiCall: body nulo (code=$httpCode)")
+                emptyBodyError(httpCode)
+            }
+    } else {
+        val errorStr = errorBodySafe()
+        Timber.w("safeApiCall HTTP error: code=$httpCode, message=$errorStr")
+        Result.Error(
+            message = mapErrorMessage(httpCode),
+            code = httpCode,
+            showRetry = shouldRetry(httpCode)
+        )
+    }
+}
+
+private fun Response<*>.errorBodySafe(): String? =
+    try { errorBody()?.string() } catch (_: Exception) { null }
+
+private fun emptyBodyError(code: Int): Result.Error =
+    Result.Error(
+        message = "Ocorreu um erro inesperado. Tente novamente mais tarde.",
+        code = code,
+        showRetry = true
+    )
+
+private fun shouldRetry(code: Int?): Boolean =
+    code == 404 || (code ?: 0) in 500..599

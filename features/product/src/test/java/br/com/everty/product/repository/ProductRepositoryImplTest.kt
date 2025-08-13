@@ -1,48 +1,24 @@
 package br.com.everty.product.repository
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.everty.product.data.api.ProductAPI
 import br.com.everty.product.data.model.HighlightProductResponse
 import br.com.everty.product.data.model.HighlightedProductsResponse
 import br.com.everty.product.data.model.ProductResponse
 import br.com.everty.shared.utils.Result
 import io.mockk.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.setMain
 import okhttp3.ResponseBody.Companion.toResponseBody
-import org.junit.After
 import org.junit.Assert.*
-import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
 import timber.log.Timber
 
 @ExperimentalCoroutinesApi
 class ProductRepositoryImplTest {
-
-    @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
-
-    private val testDispatcher = TestCoroutineDispatcher()
     private val api: ProductAPI = mockk()
     private val repository: ProductRepository = ProductRepositoryImpl(api)
-
-    @Before
-    fun setup() {
-        Dispatchers.setMain(testDispatcher)
-    }
-
-    @After
-    fun tearDown() = runBlocking {
-        Dispatchers.resetMain()
-        testDispatcher.cleanupTestCoroutines()
-    }
 
     @Test
     fun `getHighlightedProducts returns empty list when highlights is empty`() = runBlocking {
