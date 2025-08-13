@@ -7,7 +7,7 @@ data class ProductUIState(
     val productList: List<ProductModelUI> = emptyList(),
     val isLoading: Boolean = false,
     val errorMessage: String = "",
-    val errorCode: String = "",
+    val errorCode: String? = "",
     val showRetry: Boolean = false,
     val isSearching: Boolean = false
 )

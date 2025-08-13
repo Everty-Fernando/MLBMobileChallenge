@@ -51,7 +51,7 @@ class ProductDetailsViewModel(
         uiState = uiState.copy(
             isLoading = false,
             errorMessage = result.message,
-            errorCode = result.code.toString(),
+            errorCode = result.code?.toString(),
             showRetry = result.showRetry
         )
     }

@@ -23,7 +23,7 @@ fun AppErrorState(
     modifier: Modifier = Modifier,
     lottieAsset: String = "error_state.json",
     lottieSize: Dp = 300.dp,
-    code: String,
+    code: String?,
     message: String,
     showRetry: Boolean = false,
     retryText: String = "Tentar novamente",
@@ -43,13 +43,15 @@ fun AppErrorState(
                 size = lottieSize,
                 iterations = LottieConstants.IterateForever
             )
-            Text(
-                text = code,
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.error,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp, bottom = 8.dp).offset(y = (-50).dp)
-            )
+            code?.let {
+                Text(
+                    text = code,
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = MaterialTheme.colorScheme.error,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(top = 16.dp, bottom = 8.dp).offset(y = (-50).dp)
+                )
+            }
             Text(
                 text = message,
                 style = MaterialTheme.typography.bodyMedium,
