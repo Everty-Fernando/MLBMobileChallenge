@@ -2,7 +2,6 @@ package br.com.everty.product.repository
 
 import br.com.everty.product.data.api.ProductAPI
 import br.com.everty.product.data.model.ProductResponse
-import br.com.everty.shared.network.extensions.toTypedError
 import br.com.everty.shared.network.utils.safeApiCall
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,7 +27,7 @@ class ProductRepositoryImpl(
             }
 
             is Result.Error -> {
-                emit(highlightsResult.toTypedError())
+                emit(highlightsResult)
             }
         }
     }
@@ -36,7 +35,7 @@ class ProductRepositoryImpl(
     override fun searchProducts(query: String): Flow<Result<List<ProductResponse>>> = flow {
         when (val result = safeApiCall { service.searchProducts(query = query) }) {
             is Result.Success -> emit(Result.Success(result.data.productsResult))
-            is Result.Error -> emit(result.toTypedError())
+            is Result.Error -> emit(result)
         }
     }
 
@@ -46,7 +45,7 @@ class ProductRepositoryImpl(
                 delay(200)
                 emit(Result.Success(result.data))
             }
-            is Result.Error -> emit(result.toTypedError())
+            is Result.Error -> emit(result)
         }
     }
 
