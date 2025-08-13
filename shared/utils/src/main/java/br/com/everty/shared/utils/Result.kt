@@ -6,6 +6,5 @@ sealed class Result<out T> {
         val message: String,
         val code: Int? = null,
         val showRetry: Boolean = true,
-        val exception: Throwable? = null
     ): Result<Nothing>()
 }
